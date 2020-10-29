@@ -1,10 +1,25 @@
-<h2>My List</h2>
+<div *ngIf="selectedItem">
+  <h2>{{selectedItem.name}} details</h2>
+  <div><span>id: </span>{{selectedItem.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedItem.name" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>is complete:
+      <input type="checkbox" [(ngModel)]="selectedItem.isComplete"/>
+    </label>
+  </div>
+</div>
 <div *ngIf="items.length > 0">
-  {{items.length}} {{items.length == 1 ? 'item' :
-  'items'}}
+  {{items.length}} {{items.length == 1 ? 'item' : 'items'}}
 </div>
 <ul class="items">
-  <li *ngFor="let item of items">
+  <li
+    *ngFor="let item of items"
+    (click)="onSelect(item)"
+    [class.selected]="item === selectedItem">
     {{item.name}}
   </li>
 </ul>

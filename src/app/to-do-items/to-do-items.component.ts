@@ -9,16 +9,14 @@ import { ITEMS } from '../mock-todo-items';
 })
 export class ToDoItemsComponent implements OnInit {
 
-  // свойство состояния компонента
-  toDoItem: ToDoItem = {
-    id: 1,
-    name: 'Call Joe',
-    isComplete: false
-  };
+  constructor() { }
+
+  selectedItem: ToDoItem;
   // свойство состояния компонента: демо-список моделей задачек
   items = ITEMS;
-
-  constructor() { }
+  onSelect(item: ToDoItem): void {
+    this.selectedItem = item;
+  }
 
   ngOnInit(): void {
   }
