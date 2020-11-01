@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoItem } from '../to-do-item';
-import { ITEMS } from '../mock-todo-items';
+import { TodoItemsService } from '../todo-items.service';
 
 @Component({
   selector: 'app-to-do-items',
@@ -9,11 +9,25 @@ import { ITEMS } from '../mock-todo-items';
 })
 export class ToDoItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoItemsService: TodoItemsService) {
+    // this.items = todoItemsService.getItems();
+    this.todoItemsService.getRemoteItems()
+      .subscribe(
+        data => {
+          console.log(data);
+          this.items =
+            data.map(
+              todoItem => new ToDoItem(todoItem.id, todoItem.title, todoItem.completed)
+            );
+        },
+        error => {
+          console.log(error);
+        });
+  }
 
   selectedItem: ToDoItem;
   // свойство состояния компонента: демо-список моделей задачек
-  items = ITEMS;
+  items = [];
   onSelect(item: ToDoItem): void {
     this.selectedItem = item;
   }
