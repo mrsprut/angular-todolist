@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToDoItem } from '../to-do-item';
-import { TodoItemsService } from '../todo-items.service';
+import { ToDoItem } from '../../to-do-item';
+import { TodoItemsService } from '../../todo-items.service';
 import {delay} from 'rxjs/operators';
 
 @Component({
