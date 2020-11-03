@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ITEMS } from './mock-todo-items';
 import { ToDoItem } from './to-do-item';
 
